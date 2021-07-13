@@ -29,7 +29,7 @@ class CustomListAdapter(context: Context, private val dataList: ArrayList<Stock>
         binding.listItemNameTv.text = dataList[position].name
         binding.listItemCodeTv.text = dataList[position].code
         binding.listItemMarketTv.text = dataList[position].marketName
-        binding.listItemCheckIv.isChecked = dataList[position].check
+        binding.listItemCheckCb.isChecked = dataList[position].check
         if (dataList[position].country == "korea") {
             binding.listItemCountryIv.setImageResource(R.drawable.korea)
         } else {

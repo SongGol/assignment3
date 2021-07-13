@@ -74,11 +74,12 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:background="@color/bright_grey"
-        android:hint="  종목명·초성·코드·심볼·검색"
+        android:hint="종목명·초성·코드·심볼·검색"
         android:textSize="18sp"
+        android:textCursorDrawable="@drawable/custom_cursor"
         app:layout_constraintBottom_toTopOf="@id/interest_total_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/interest_gl_start"
         app:layout_constraintTop_toBottomOf="@+id/interest_back_tv"
         app:layout_constraintVertical_chainStyle="packed" />
 
@@ -130,5 +131,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/interest_total_tv" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/bright_grey"
+        app:layout_constraintBottom_toTopOf="@+id/interest_total_tv"
+        app:layout_constraintEnd_toStartOf="@+id/interest_gl_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/interest_sv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,9 @@ package com.example.assignment3
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 object SharedPreferenceManager {
     private const val NAME = "login_pref"
@@ -43,6 +46,23 @@ object SharedPreferenceManager {
             editor.putBoolean(KEY, it)
         }
         editor.apply()
+    }
+
+    fun putObject(context: Context?, KEY: String, valueObject: ArrayList<Stock>) {
+        val editor = getSharedPreferences(context!!).edit()
+        val gson = Gson()
+        val json: String = gson.toJson(valueObject)
+        editor.putString(KEY, json)
+        editor.apply()
+    }
+
+    fun getObject(context: Context?, KEY: String, defaultValue: ArrayList<Stock>): ArrayList<Stock> {
+        val gson = Gson()
+        val mPref = getSharedPreferences(context!!)
+        val json: String? = mPref.getString(KEY, gson.toJson(defaultValue))
+
+        val itemType = object : TypeToken<List<Stock>>() {}.type
+        return gson.fromJson<ArrayList<Stock>>(json, itemType)
     }
 
     fun isContain(context: Context?, KEY: String): Boolean {
