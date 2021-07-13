@@ -29,17 +29,12 @@ class CustomListAdapter(context: Context, private val dataList: ArrayList<Stock>
         binding.listItemNameTv.text = dataList[position].name
         binding.listItemCodeTv.text = dataList[position].code
         binding.listItemMarketTv.text = dataList[position].marketName
-        if (dataList[position].check) {
-            binding.listItemCheckIv.setImageResource(R.drawable.checked)
-        } else {
-            binding.listItemCheckIv.setImageResource(R.drawable.unchecked)
-        }
+        binding.listItemCheckIv.isChecked = dataList[position].check
         if (dataList[position].country == "korea") {
             binding.listItemCountryIv.setImageResource(R.drawable.korea)
         } else {
             binding.listItemCountryIv.setImageResource(R.drawable.us)
         }
-
 
         return binding.root
     }

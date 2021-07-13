@@ -73,27 +73,28 @@
         android:id="@+id/interest_sv"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:textSize="18sp"
-        android:hint="종목명·초성·코드·심볼·검색"
         android:background="@color/bright_grey"
-        app:layout_constraintEnd_toStartOf="@+id/interest_gl_end"
-        app:layout_constraintStart_toStartOf="@+id/interest_gl_start"
-        app:layout_constraintTop_toBottomOf="@+id/interest_back_tv"
+        android:hint="  종목명·초성·코드·심볼·검색"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/interest_total_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/interest_back_tv"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/interest_total_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/interest_total_tv"
-        android:textSize="16sp"
         android:gravity="center"
         android:padding="10dp"
+        android:text="@string/interest_total_tv"
+        android:textColor="@color/dark_grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/interest_lv"
         app:layout_constraintEnd_toStartOf="@+id/interest_inner_tv"
-        app:layout_constraintStart_toStartOf="@+id/interest_gl_start"
-        app:layout_constraintTop_toBottomOf="@+id/interest_sv"
-        app:layout_constraintBottom_toTopOf="@id/interest_lv"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/interest_sv" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/interest_inner_tv"
@@ -101,6 +102,7 @@
         android:layout_height="wrap_content"
         android:text="@string/interest_inner_tv"
         android:textSize="16sp"
+        android:textColor="@color/dark_grey"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/interest_total_tv"
         app:layout_constraintTop_toTopOf="@+id/interest_total_tv"
@@ -111,11 +113,12 @@
         android:id="@+id/interest_outer_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/interest_outer_tv"
-        android:textSize="16sp"
         android:gravity="center"
+        android:text="@string/interest_outer_tv"
+        android:textColor="@color/dark_grey"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/interest_inner_tv"
-        app:layout_constraintEnd_toStartOf="@+id/interest_gl_end"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/interest_inner_tv"
         app:layout_constraintTop_toTopOf="@+id/interest_inner_tv" />
 

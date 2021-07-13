@@ -29,7 +29,7 @@ class InterestStockActivity : AppCompatActivity() {
         stockArrayList.add(Stock("오리온", "A271560", "코스피", "korea", false, 23200, 23300))
         stockArrayList.add(Stock("삼성전자", "A005930","코스피", "korea", false, 23200, 23300))
         stockArrayList.add(Stock("세틀뱅크", "A234340","코스닥", "korea", false, 23200, 23300))
-        stockArrayList.add(Stock("RFHIC", "A218410","코스닥", "kora", false, 23200, 23300))
+        stockArrayList.add(Stock("RFHIC", "A218410","코스닥", "korea", false, 23200, 23300))
         stockArrayList.add(Stock("쏠리드", "A050890","코스닥", "korea", false, 23200, 23300))
         stockArrayList.add(Stock("피씨엘", "A241820","코스닥", "korea", false, 23200, 23300))
         stockArrayList.add(Stock("씨에스윈드", "A112610","코스피", "korea", false, 23200, 23300))
