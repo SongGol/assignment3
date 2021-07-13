@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">assignment3</string>
+    <string name="interest_back_tv">관심종목 추가</string>
+    <string name="interest_get_market_tv">증권사에서 가져오기</string>
+    <string name="interest_save_tv">완료</string>
+    <string name="interest_total_tv">전체</string>
+    <string name="interest_inner_tv">국내</string>
+    <string name="interest_outer_tv">해외·환율</string>
+</resources>

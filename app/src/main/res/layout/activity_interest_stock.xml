@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InterestStockActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/interest_gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/interest_gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/interest_gl_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/interest_back_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/interest_back_tv"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@id/interest_get_market_tv"
+        app:layout_constraintStart_toStartOf="@+id/interest_gl_start"
+        app:layout_constraintTop_toTopOf="@+id/interest_gl_top"
+        app:layout_constraintBottom_toTopOf="@id/interest_sv"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/interest_get_market_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/interest_get_market_tv"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:background="@drawable/transparent_border"
+        app:layout_constraintBottom_toBottomOf="@+id/interest_back_tv"
+        app:layout_constraintEnd_toStartOf="@+id/interest_save_tv"
+        app:layout_constraintStart_toEndOf="@+id/interest_back_tv"
+        app:layout_constraintTop_toTopOf="@+id/interest_gl_top"
+        app:layout_constraintHorizontal_chainStyle="spread"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/interest_save_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/interest_save_tv"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:background="@drawable/transparent_border"
+        app:layout_constraintBottom_toBottomOf="@+id/interest_back_tv"
+        app:layout_constraintEnd_toStartOf="@+id/interest_gl_end"
+        app:layout_constraintTop_toTopOf="@+id/interest_gl_top"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/interest_sv"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:textSize="18sp"
+        android:hint="종목명·초성·코드·심볼·검색"
+        android:background="@color/bright_grey"
+        app:layout_constraintEnd_toStartOf="@+id/interest_gl_end"
+        app:layout_constraintStart_toStartOf="@+id/interest_gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/interest_back_tv"
+        app:layout_constraintBottom_toTopOf="@id/interest_total_tv"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/interest_total_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/interest_total_tv"
+        android:textSize="16sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/interest_inner_tv"
+        app:layout_constraintStart_toStartOf="@+id/interest_gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/interest_sv"
+        app:layout_constraintBottom_toTopOf="@id/interest_lv"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/interest_inner_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/interest_inner_tv"
+        android:textSize="16sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/interest_total_tv"
+        app:layout_constraintTop_toTopOf="@+id/interest_total_tv"
+        app:layout_constraintStart_toEndOf="@id/interest_total_tv"
+        app:layout_constraintEnd_toStartOf="@id/interest_outer_tv" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/interest_outer_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/interest_outer_tv"
+        android:textSize="16sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/interest_inner_tv"
+        app:layout_constraintEnd_toStartOf="@+id/interest_gl_end"
+        app:layout_constraintStart_toEndOf="@+id/interest_inner_tv"
+        app:layout_constraintTop_toTopOf="@+id/interest_inner_tv" />
+
+    <ListView
+        android:id="@+id/interest_lv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/interest_gl_end"
+        app:layout_constraintStart_toStartOf="@+id/interest_gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/interest_total_tv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
