@@ -1,5 +1,6 @@
 package com.example.assignment3
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.assignment3.databinding.ActivityMainBinding
@@ -12,6 +13,9 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
+        binding.mainBtn.setOnClickListener{
+            val intent = Intent(this, InterestStockActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/list_item_check_iv"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/list_item_name_tv"
+        app:srcCompat="@drawable/unchecked" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/list_item_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toEndOf="@+id/list_item_check_iv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/list_item_country_iv"
+        tools:text="LG디스플레이"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/list_item_country_iv"
+        android:layout_width="24dp"
+        android:layout_height="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/list_item_name_tv"
+        app:layout_constraintTop_toBottomOf="@+id/list_item_name_tv"
+        app:srcCompat="@drawable/korea" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/list_item_code_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/list_item_country_iv"
+        app:layout_constraintStart_toEndOf="@+id/list_item_country_iv"
+        app:layout_constraintTop_toTopOf="@+id/list_item_country_iv"
+        app:layout_constraintEnd_toStartOf="@id/list_item_market_tv"
+        tools:text="A034220"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/list_item_market_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/list_item_country_iv"
+        app:layout_constraintStart_toEndOf="@+id/list_item_code_tv"
+        app:layout_constraintTop_toTopOf="@+id/list_item_country_iv"
+        tools:text="코스피"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
