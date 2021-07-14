@@ -6,14 +6,164 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <Button
-        android:id="@+id/main_btn"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_gl_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_gl_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <fragment
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/frag_option_lo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frag_option_lo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_interest_frg_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/main_interest_frg_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/main_community_iv"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:srcCompat="@drawable/interest_selected" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/main_interest_frg_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_interest_frg_tv"
+            android:textSize="12sp"
+            android:textColor="@color/dark_red"
+            android:layout_marginTop="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/main_interest_frg_iv"
+            app:layout_constraintStart_toStartOf="@+id/main_interest_frg_iv"
+            app:layout_constraintTop_toBottomOf="@id/main_interest_frg_iv"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_community_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/main_interest_frg_iv"
+            app:layout_constraintEnd_toStartOf="@+id/main_trend_iv"
+            app:layout_constraintStart_toEndOf="@+id/main_interest_frg_iv"
+            app:layout_constraintTop_toTopOf="@+id/main_interest_frg_iv"
+            app:srcCompat="@drawable/comunity_unselected" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/main_community_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_community_tv"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/main_interest_frg_tv"
+            app:layout_constraintEnd_toEndOf="@+id/main_community_iv"
+            app:layout_constraintStart_toStartOf="@+id/main_community_iv"
+            app:layout_constraintTop_toTopOf="@+id/main_interest_frg_tv" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_trend_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/main_interest_frg_iv"
+            app:layout_constraintEnd_toStartOf="@id/main_discover_iv"
+            app:layout_constraintStart_toEndOf="@id/main_community_iv"
+            app:layout_constraintTop_toTopOf="@+id/main_interest_frg_iv"
+            app:srcCompat="@drawable/trend_unselected" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/main_trend_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_trend_tv"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/main_interest_frg_tv"
+            app:layout_constraintEnd_toEndOf="@+id/main_trend_iv"
+            app:layout_constraintStart_toStartOf="@+id/main_trend_iv"
+            app:layout_constraintTop_toTopOf="@+id/main_interest_frg_tv" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_discover_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/main_interest_frg_iv"
+            app:layout_constraintEnd_toStartOf="@+id/main_more_iv"
+            app:layout_constraintStart_toEndOf="@+id/main_trend_iv"
+            app:layout_constraintTop_toTopOf="@+id/main_interest_frg_iv"
+            app:srcCompat="@drawable/discover_unselected" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/main_discover_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_discover_tv"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/main_interest_frg_tv"
+            app:layout_constraintEnd_toEndOf="@+id/main_discover_iv"
+            app:layout_constraintStart_toStartOf="@+id/main_discover_iv"
+            app:layout_constraintTop_toTopOf="@+id/main_interest_frg_tv" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_more_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/main_interest_frg_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/main_interest_frg_iv"
+            app:layout_constraintStart_toEndOf="@id/main_discover_iv"
+            app:srcCompat="@drawable/more_unselected" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/main_more_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_more_tv"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/main_interest_frg_tv"
+            app:layout_constraintEnd_toEndOf="@+id/main_more_iv"
+            app:layout_constraintStart_toStartOf="@+id/main_more_iv"
+            app:layout_constraintTop_toTopOf="@+id/main_interest_frg_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,14 @@
     <string name="interest_total_tv">전체</string>
     <string name="interest_inner_tv">국내</string>
     <string name="interest_outer_tv">해외·환율</string>
+    <string name="main_stock_add_tv">종목추가</string>
+    <string name="main_new_info_tv">뉴스/정보</string>
+    <string name="main_current_tv">최근 조회</string>
+    <string name="main_have_stock_tv">보유종목가져오기</string>
+    <string name="main_attention_tv">관심그룹</string>
+    <string name="main_interest_frg_tv">관심종목</string>
+    <string name="main_community_tv">커뮤니티</string>
+    <string name="main_trend_tv">증시동향</string>
+    <string name="main_discover_tv">종목발굴</string>
+    <string name="main_more_tv">더보기</string>
 </resources>
