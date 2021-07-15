@@ -56,6 +56,13 @@ class InterestStockActivity : AppCompatActivity() {
         defaultArrayList.add(Stock("한전산업", "A130660","코스피", "korea", false, 16200, 15250, 15250, 16200, 0, 2))
         defaultArrayList.add(Stock("우리들휴브레인", "A118000","코스피", "korea", false, 2090, 2060, 2060, 2090, 0))
         defaultArrayList.add(Stock("펜 버지니아", "US.PVAC","나스닥", "us", false, 2251, 2327, 2251, 2327, 0))
+        defaultArrayList.add(Stock("SK이노베이션", "A096770","코스피", "korea", false, 270500, 267000, 267000, 269500, 0))
+        defaultArrayList.add(Stock("두산중공업", "A034020","코스피", "korea", false, 25900, 26050, 25750, 26650, 0))
+        defaultArrayList.add(Stock("바이오솔루션", "A086820","코스닥", "korea", false, 28400, 28500, 28150, 29000, 0))
+        defaultArrayList.add(Stock("도이치모터스", "A067990","코스닥", "korea", false, 7860, 7680, 7650, 7860, 0))
+        defaultArrayList.add(Stock("피피아이", "A062970","코스닥", "korea", false, 9740, 9240, 9120, 10300, 0))
+        defaultArrayList.add(Stock("삼성SDI", "A006400","코스피", "korea", false, 748000, 750000, 735000, 754000, 0))
+        defaultArrayList.add(Stock("삼표시멘트", "A038500","코스닥", "korea", false, 5790, 5790, 5710, 5820, 0))
 
         for (item in SharedPreferenceManager.getObject(this, STOCK_DATA, defaultArrayList)) {
             stockArrayList.add(item)
