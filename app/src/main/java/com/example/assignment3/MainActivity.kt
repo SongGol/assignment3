@@ -11,16 +11,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assignment3.databinding.ActivityMainBinding
 import com.example.assignment3.databinding.FragmentInterestBinding
 
+const val INTEREST = "interest"
+const val COMMUNITY = "community"
+const val TREND = "trend"
+const val DISCOVER = "discover"
+const val MORE = "more"
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    val INTEREST = "interest"
-    val COMMUNITY = "community"
-    val TREND = "trend"
-    val DISCOVER = "discover"
-    val MORE = "more"
+
     private var CUR = INTEREST
     private var backPressedTime: Long = 0L
 

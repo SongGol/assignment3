@@ -5,8 +5,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.assignment3.databinding.ActivityInterestStockBinding
 
+const val STOCK_DATA = "stock_data"
+
 class InterestStockActivity : AppCompatActivity() {
-    private val STOCK_DATA = "stock_data"
     private lateinit var binding: ActivityInterestStockBinding
     private lateinit var customAdapter: CustomListAdapter
     var stockArrayList = ArrayList<Stock>()

@@ -2,26 +2,40 @@ package com.example.assignment3
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assignment3.databinding.FragmentInterestBinding
 
 class InterestFragment : Fragment() {
     private lateinit var binding: FragmentInterestBinding
+    private lateinit var customRecyclerAdapter: CustomRecyclerAdapter
     var stockArrayList = ArrayList<Stock>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        customRecyclerAdapter = CustomRecyclerAdapter(stockArrayList)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentInterestBinding.inflate(inflater, container, false)
 
-        initializeDataSet()
-
         //layout manager설정
         binding.mainRecyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         binding.mainRecyclerview.adapter = CustomRecyclerAdapter(stockArrayList)
+        binding.mainRecyclerview.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+
+
+        //grid manager설정
+        binding.mainRecyclerview.layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+        binding.mainRecyclerview.adapter = CustomRecyclerGridAdapter(stockArrayList)
         binding.mainRecyclerview.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
 
 
@@ -33,8 +47,38 @@ class InterestFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        stockArrayList.clear()
+        //initializeDataSet()
+        for (item in SharedPreferenceManager.getObject(activity, STOCK_DATA, ArrayList<Stock>())) {
+            if (item.check) {
+                stockArrayList.add(item)
+                Log.d("item", item.name)
+            }
+        }
+        customRecyclerAdapter.dataSet = stockArrayList
+        customRecyclerAdapter.notifyDataSetChanged()
+        Log.d("InterestFragment", "onStart()")
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        var ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        ft.detach(this).attach(this).commit()
+
+        Log.d("InterestFragment", "onResume()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("InterestFragment", "onStop()")
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        Log.d("InterestFragment", "onDestroy()")
     }
 
     fun initializeDataSet() {
