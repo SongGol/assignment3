@@ -64,4 +64,20 @@
         app:layout_constraintStart_toEndOf="@+id/list_item_code_tv"
         app:layout_constraintTop_toTopOf="@+id/list_item_country_iv"
         tools:text="코스피"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/attraction_border"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="50" />
 </androidx.constraintlayout.widget.ConstraintLayout>

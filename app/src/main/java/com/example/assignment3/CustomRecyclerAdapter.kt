@@ -44,6 +44,7 @@ class CustomRecyclerAdapter(var dataSet: ArrayList<Stock>) : RecyclerView.Adapte
             binding.recyclerItemDif.text = (data.startValue - data.currentValue).toString()
             //전날 종가는 시작가와 같다고 하자.
             binding.recyclerItemDifPer.text = "00.00%"
+            binding.recyclerItemStatus.setImageResource(if(data.status == 0) 0 else if (data.status == 1) R.drawable.management else R.drawable.warning)
         }
     }
 }
