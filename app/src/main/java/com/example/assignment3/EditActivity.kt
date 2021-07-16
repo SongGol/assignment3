@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -38,7 +39,15 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
             val intent = Intent(this, InterestStockActivity::class.java)
             startActivity(intent)
         }
-
+/*
+        //recyclerview item click listener
+        customEditAdapter.setOnItemClickListener(object: CustomRecyclerEditAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int) {
+                Log.d("EditActivity on clicked position ",position.toString())
+                stockArrayList[position].check = !stockArrayList[position].check
+            }
+        })
+*/
         Log.d("EditActivity", "onCreate()")
     }
 

@@ -3,12 +3,14 @@ package com.example.assignment3
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment3.databinding.RecyclerviewEditItemBinding
 
 class CustomRecyclerEditAdapter(var dataSet: ArrayList<Stock>, private val listener: ItemDragListener) : RecyclerView.Adapter<CustomRecyclerEditAdapter.ViewHolder>(), ItemActionListener{
     private lateinit var binding: RecyclerviewEditItemBinding
+    private var mListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomRecyclerEditAdapter.ViewHolder {
         binding = RecyclerviewEditItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,11 +20,17 @@ class CustomRecyclerEditAdapter(var dataSet: ArrayList<Stock>, private val liste
     override fun onBindViewHolder(holder: CustomRecyclerEditAdapter.ViewHolder, position: Int) {
         val item: Stock = dataSet[position]
         holder.bind(item)
+
+        holder.itemView.setOnClickListener {
+            dataSet[position].check = !item.check
+            binding.checkCb.isChecked = dataSet[position].check
+            notifyDataSetChanged()
+        }
     }
 
     override fun getItemCount(): Int = dataSet.size
 
-    class ViewHolder(private val binding: RecyclerviewEditItemBinding, listener: ItemDragListener) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: RecyclerviewEditItemBinding, listener: ItemDragListener) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.editDragIv.setOnTouchListener { v, event ->
@@ -31,6 +39,16 @@ class CustomRecyclerEditAdapter(var dataSet: ArrayList<Stock>, private val liste
                 }
                 false
             }
+
+            /*
+            binding.recyclerEditItemLo.setOnClickListener {
+                val pos = adapterPosition
+                if (pos != RecyclerView.NO_POSITION && mListener != null) {
+                    mListener!!.onItemClick(it, pos)
+                    notifyDataSetChanged()
+                }
+            }
+            */
         }
         fun bind(data: Stock) {
             binding.name.text = data.name
@@ -41,7 +59,9 @@ class CustomRecyclerEditAdapter(var dataSet: ArrayList<Stock>, private val liste
             binding.dif.text = (data.startValue - data.currentValue).toString()
             //전날 종가는 시작가와 같다고 하자.
             binding.difPer.text = "00.00%"
+            binding.checkCb.isChecked = !data.check
         }
+
     }
 
     override fun onItemMoved(from: Int, to: Int) {
@@ -49,5 +69,13 @@ class CustomRecyclerEditAdapter(var dataSet: ArrayList<Stock>, private val liste
         val fromItem = dataSet.removeAt(from)
         dataSet.add(to, fromItem)
         notifyItemMoved(from, to)
+    }
+
+    public interface OnItemClickListener {
+        fun onItemClick(view: View, position: Int)
+    }
+
+    public fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.mListener = listener
     }
 }
