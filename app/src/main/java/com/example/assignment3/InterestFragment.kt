@@ -1,5 +1,6 @@
 package com.example.assignment3
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -61,6 +62,12 @@ class InterestFragment : Fragment() {
         //종목추가 리스너
         binding.mainStockAddTv.setOnClickListener{
             val intent = Intent(activity, InterestStockActivity::class.java)
+            startActivity(intent)
+        }
+        //종목 설정 리스너
+        binding.mainSettingIv.setOnClickListener {
+            Log.d("InterestFragment","setting iv clicked")
+            val intent = Intent(activity, EditActivity::class.java)
             startActivity(intent)
         }
 

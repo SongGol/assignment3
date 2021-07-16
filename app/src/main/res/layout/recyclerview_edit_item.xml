@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="5dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="5dp" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/check_cb"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:button="@drawable/custom_checkbox"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/name"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/recycler_item_name"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/check_cb"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recycler_item_price"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/triangle"
+        app:layout_constraintEnd_toEndOf="@+id/volume"
+        app:layout_constraintTop_toTopOf="@+id/gl_top" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recycler_item_volume"
+        android:textSize="12sp"
+        android:textColor="@color/dark_grey"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/triangle"
+        app:layout_constraintEnd_toStartOf="@+id/triangle"
+        app:layout_constraintTop_toTopOf="@+id/triangle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/triangle"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dif_per"
+        app:layout_constraintEnd_toStartOf="@+id/dif_per"
+        app:layout_constraintTop_toTopOf="@+id/dif_per"
+        tools:text="▼" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recycler_item_dif"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toTopOf="@id/dif_per"
+        app:layout_constraintEnd_toEndOf="@+id/dif_per"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dif_per"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="@string/recycler_item_dif_per"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/edit_drag_iv"
+        app:layout_constraintTop_toBottomOf="@+id/dif" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/edit_drag_iv"
+        android:layout_width="16dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintTop_toTopOf="@+id/gl_top"
+        app:srcCompat="@drawable/drag_helper" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
