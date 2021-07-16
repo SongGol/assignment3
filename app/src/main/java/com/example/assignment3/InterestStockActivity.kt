@@ -1,6 +1,8 @@
 package com.example.assignment3
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.assignment3.databinding.ActivityInterestStockBinding
@@ -28,12 +30,34 @@ class InterestStockActivity : AppCompatActivity() {
             customAdapter.notifyDataSetChanged()
         }
 
+        //체크 내용 저장 및 종료
         binding.interestSaveTv.setOnClickListener {
-            //체크 내용 저장 및 종료
             SharedPreferenceManager.putObject(this, STOCK_DATA, stockArrayList)
             finish()
         }
 
+        //editText 텍스트변경 이벤트 처리
+        binding.interestSv.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                val filteredText = s.toString()
+
+                (binding.interestLv.adapter as CustomListAdapter).filter.filter(filteredText)
+                /*
+                if (filteredText.isNotEmpty()) {
+                    binding.interestLv.setFilterText(filteredText)
+                } else {
+                    binding.interestLv.clearTextFilter()
+                }
+                */
+            }
+
+        })
 
     }
 

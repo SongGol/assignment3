@@ -80,7 +80,6 @@ class InterestFragment : Fragment() {
         for (item in SharedPreferenceManager.getObject(activity, STOCK_DATA, ArrayList<Stock>())) {
             if (item.check) {
                 stockArrayList.add(item)
-                Log.d("item", item.name)
             }
         }
         customRecyclerAdapter.notifyDataSetChanged()
