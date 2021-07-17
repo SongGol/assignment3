@@ -20,12 +20,12 @@ class CustomRecyclerEditAdapter(var dataSet: ArrayList<Stock>, private val liste
     override fun onBindViewHolder(holder: CustomRecyclerEditAdapter.ViewHolder, position: Int) {
         val item: Stock = dataSet[position]
         holder.bind(item)
-
+/*
         holder.itemView.setOnClickListener {
             dataSet[position].check = !item.check
             binding.checkCb.isChecked = dataSet[position].check
             notifyDataSetChanged()
-        }
+        }*/
     }
 
     override fun getItemCount(): Int = dataSet.size
@@ -40,15 +40,16 @@ class CustomRecyclerEditAdapter(var dataSet: ArrayList<Stock>, private val liste
                 false
             }
 
-            /*
+
             binding.recyclerEditItemLo.setOnClickListener {
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION && mListener != null) {
                     mListener!!.onItemClick(it, pos)
-                    notifyDataSetChanged()
+                    binding.checkCb.isChecked = dataSet[pos].check
+                    notifyItemChanged(pos)
                 }
             }
-            */
+
         }
         fun bind(data: Stock) {
             binding.name.text = data.name

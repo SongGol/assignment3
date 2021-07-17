@@ -39,7 +39,7 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
             val intent = Intent(this, InterestStockActivity::class.java)
             startActivity(intent)
         }
-/*
+
         //recyclerview item click listener
         customEditAdapter.setOnItemClickListener(object: CustomRecyclerEditAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
@@ -47,7 +47,7 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
                 stockArrayList[position].check = !stockArrayList[position].check
             }
         })
-*/
+
         Log.d("EditActivity", "onCreate()")
     }
 
