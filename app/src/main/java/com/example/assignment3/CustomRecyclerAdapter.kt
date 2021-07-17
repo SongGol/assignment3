@@ -22,17 +22,6 @@ class CustomRecyclerAdapter(var dataSet: ArrayList<Stock>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: CustomRecyclerAdapter.ViewHolder, position: Int) {
         val item: Stock = dataSet[position]
         holder.bind(item)
-/*
-        //리스너 등록
-        holder.itemView.setOnClickListener{
-            val intent = Intent(holder.itemView.context, NoteActivity::class.java)
-            //intent에 Parcelable객체 값 넣어 전달
-            val data = RecyclerItem(item.id, item.title, item.content, item.modified)
-            intent.putExtra("data", data)
-            ContextCompat.startActivity(holder.itemView.context, intent, null)
-        }
-
- */
     }
 
     override fun getItemCount(): Int = dataSet.size
@@ -66,8 +55,13 @@ class CustomRecyclerAdapter(var dataSet: ArrayList<Stock>) : RecyclerView.Adapte
             //percent 설정
             binding.recyclerItemDifPer.text = makePercent((data.currentValue - data.startValue).toDouble() / data.startValue.toDouble() * 100.0)
             //숫자 설정
-            binding.recyclerItemDif.text = makeDecimal(data.currentValue - data.startValue)
-            binding.recyclerItemPrice.text = makeDecimal(data.currentValue)
+            if (data.country == "korea") {
+                binding.recyclerItemDif.text = makeDecimal(data.currentValue - data.startValue)
+                binding.recyclerItemPrice.text = makeDecimal(data.currentValue)
+            } else if (data.country == "us"){
+                binding.recyclerItemDif.text = makeUsPrice((data.currentValue - data.startValue).toDouble()/100)
+                binding.recyclerItemPrice.text = makeUsPrice(data.currentValue.toDouble()/100)
+            }
             binding.recyclerItemVolume.text = makeDecimal(data.volume)
         }
     }
@@ -81,29 +75,20 @@ class CustomRecyclerAdapter(var dataSet: ArrayList<Stock>) : RecyclerView.Adapte
     }
 }
 
-fun makeDesign(stock: Stock, binding: RecyclerviewItemBinding, context: Context)
-{
-    binding.recyclerItemName.text = stock.name
-    //색상 설정
-    val color = if (stock.currentValue <  stock.startValue) ContextCompat.getColor(context, R.color.medium_blue)  else ContextCompat.getColor(context, R.color.dark_red)
-    binding.recyclerItemPrice.setTextColor(color)
-    binding.recyclerItemDif.setTextColor(color)
-    binding.recyclerItemDifPer.setTextColor(color)
-    binding.recyclerItemTriangle.setTextColor(color)
-    //삼각형 모양설정
-    binding.recyclerItemTriangle.text = if (stock.currentValue < stock.startValue) "▼" else "▲"
-}
-
-fun makePercent(amount: Double) : String
-{
+fun makePercent(amount: Double) : String {
     val value = if (amount < 0) -amount else amount
     val formatter = DecimalFormat("#0.00")
     return formatter.format(value)+"%"
 }
 
-fun makeDecimal(amount: Int) : String
-{
+fun makeDecimal(amount: Int) : String {
     val value = if (amount < 0) -amount else amount
     val formatter = DecimalFormat("###,###,###")
     return formatter.format(value)
+}
+
+fun makeUsPrice(amount: Double) : String {
+    val value = if (amount < 0) -amount else amount
+    val formatter = DecimalFormat("#,##0.00")
+    return formatter.format(value).toString()
 }
