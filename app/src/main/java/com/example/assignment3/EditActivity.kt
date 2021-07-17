@@ -20,6 +20,7 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
     var defaultList = ArrayList<Stock>()
     var stockArrayList = ArrayList<Stock>()
     private var select: Int = 0
+    private val NAMES = "names"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -135,11 +136,39 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
                 stockArrayList.add(item)
             }
         }*/
+
+        var index = 0
+        val names = SharedPreferenceManager.getObject(this, NAMES, ArrayList<Stock>())
+        //저장된 값 불러와서 초기화
+        stockArrayList.clear()
+        defaultList.clear()
+        for (item in SharedPreferenceManager.getObject(this, STOCK_DATA, ArrayList<Stock>())) {
+            //defaultList.add(item)
+            if (item.check) {
+                if (index != names.size && item.name == names[index].name) {
+                    item.check = false
+                    index++
+                }
+                stockArrayList.add(item)
+            } else {
+                defaultList.add(item)
+            }
+        }
         customEditAdapter.notifyDataSetChanged()
     }
 
     override fun onPause() {
         super.onPause()
+        //check에 해당하는 항목 저장
+        var names = ArrayList<Stock>()
+        for (item in stockArrayList) {
+            if (!item.check) {
+                item.check = true
+                names.add(item)
+            }
+        }
+        SharedPreferenceManager.putObject(this, NAMES, names)
+
         SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList<Stock>(stockArrayList + defaultList))
     }
 
@@ -148,6 +177,8 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
         for (item in stockArrayList) {
             Log.d("EditActivity onStop", item.name+", "+item.check.toString())
         }
+
+
     }
 
     override fun onResume() {

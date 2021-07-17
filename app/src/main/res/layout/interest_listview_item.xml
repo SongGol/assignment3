@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp">
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp">
 
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/list_item_check_cb"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_margin="15dp"
+        android:layout_margin="12dp"
         android:button="@drawable/custom_checkbox"
         android:focusable="false"
         android:clickable="false"
@@ -25,13 +25,13 @@
         android:id="@+id/list_item_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="15sp"
         android:textColor="@color/black"
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toEndOf="@+id/list_item_check_cb"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/list_item_country_iv"
-        tools:text="LG디스플레이"/>
+        tools:text="LG디스플레이" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/list_item_country_iv"
@@ -46,7 +46,7 @@
         android:id="@+id/list_item_code_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="13sp"
         android:layout_marginStart="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/list_item_country_iv"
         app:layout_constraintStart_toEndOf="@+id/list_item_country_iv"
@@ -58,7 +58,7 @@
         android:id="@+id/list_item_market_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="13sp"
         android:layout_marginStart="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/list_item_country_iv"
         app:layout_constraintStart_toEndOf="@+id/list_item_code_tv"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:text="50"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         android:gravity="center"
         android:background="@drawable/attraction_border"
