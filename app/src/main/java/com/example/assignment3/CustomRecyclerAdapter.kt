@@ -2,13 +2,14 @@ package com.example.assignment3
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment3.databinding.RecyclerviewItemBinding
 
 class CustomRecyclerAdapter(var dataSet: ArrayList<Stock>) : RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>(){
     private lateinit var binding: RecyclerviewItemBinding
+    private var mLongListener: OnItemLongClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomRecyclerAdapter.ViewHolder {
         binding = RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -33,7 +34,18 @@ class CustomRecyclerAdapter(var dataSet: ArrayList<Stock>) : RecyclerView.Adapte
 
     override fun getItemCount(): Int = dataSet.size
 
-    class ViewHolder(private val binding: RecyclerviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: RecyclerviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.recyclerItemLo.setOnLongClickListener {
+                val pos = adapterPosition
+                if (pos != RecyclerView.NO_POSITION && mLongListener != null) {
+                    mLongListener!!.onItemLongClick(it, pos)
+                    true
+                }
+                false
+            }
+        }
 
         fun bind(data: Stock) {
             binding.recyclerItemName.text = data.name
@@ -46,5 +58,13 @@ class CustomRecyclerAdapter(var dataSet: ArrayList<Stock>) : RecyclerView.Adapte
             binding.recyclerItemDifPer.text = "00.00%"
             binding.recyclerItemStatus.setImageResource(if(data.status == 0) 0 else if (data.status == 1) R.drawable.management else R.drawable.warning)
         }
+    }
+
+    public interface OnItemLongClickListener {
+        fun onItemLongClick(view: View, position: Int)
+    }
+
+    public fun setOnItemLongClickListener(listener: OnItemLongClickListener) {
+        this.mLongListener = listener
     }
 }

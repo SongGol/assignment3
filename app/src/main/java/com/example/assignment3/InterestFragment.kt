@@ -71,6 +71,15 @@ class InterestFragment : Fragment() {
             startActivity(intent)
         }
 
+        customRecyclerAdapter.setOnItemLongClickListener(object: CustomRecyclerAdapter.OnItemLongClickListener {
+            override fun onItemLongClick(view: View, position: Int) {
+                Log.d("InterestFragment item long click", position.toString())
+                val intent = Intent(activity, EditActivity::class.java)
+                intent.putExtra("position", position)
+                startActivity(intent)
+            }
+        })
+
         return binding.root
     }
 
