@@ -37,6 +37,7 @@
         android:text="@string/interest_back_tv"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@id/interest_sv"
         app:layout_constraintEnd_toStartOf="@id/interest_get_market_tv"
         app:layout_constraintHorizontal_chainStyle="spread_inside"

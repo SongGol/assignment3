@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,13 +17,30 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
     private lateinit var binding: ActivityEditBinding
     private lateinit var customEditAdapter: CustomRecyclerEditAdapter
     private lateinit var itemTouchHelper: ItemTouchHelper
+    var defaultList = ArrayList<Stock>()
     var stockArrayList = ArrayList<Stock>()
+    private var select: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        //저장된 값 불러와서 초기화
+        for (item in SharedPreferenceManager.getObject(this, STOCK_DATA, ArrayList<Stock>())) {
+            //defaultList.add(item)
+            if (item.check) {
+                stockArrayList.add(item)
+            } else {
+                defaultList.add(item)
+            }
+        }
+        //intent받기
+        val pos = intent.getIntExtra("position", -1)
+        if (pos != -1) {
+            stockArrayList[pos].check = false
+        }
 
         customEditAdapter = CustomRecyclerEditAdapter(stockArrayList, this)
         //layout manager설정
@@ -48,6 +66,59 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
             }
         })
 
+        //편집 textview
+        binding.editTv.setOnClickListener {
+            finish()
+        }
+
+        //전체 선택 버튼 클릭 리스너
+        binding.selectAllTv.setOnClickListener {
+            if (select == 0) {
+                for (item in stockArrayList) {
+                    item.check = false
+                }
+                binding.selectAllTv.text = "전체해제"
+                select = 1
+            } else {
+                for (item in stockArrayList) {
+                    item.check = true
+                }
+                binding.selectAllTv.text = "전체선택"
+                select = 0
+            }
+            customEditAdapter.notifyDataSetChanged()
+        }
+
+        //삭제 버튼 클릭 리스너
+        binding.deleteTv.setOnClickListener {
+            //아무것도 안눌려있으면 삭제할 관심종목을 선택해 주세요 토스트 메시지
+            var checkBool = false
+            for (item in stockArrayList) {
+                if (!item.check) checkBool = true
+            }
+            if (checkBool) {
+                var removeItems = ArrayList<Stock>()
+                for (item in stockArrayList) {
+                    if (!item.check) {
+                        removeItems.add(item)
+                    }
+                }
+                defaultList = ArrayList(defaultList + removeItems)
+                stockArrayList.removeAll(removeItems)
+                finish()
+            } else {
+                Toast.makeText(this, "삭제할 관심종목을 선택해 주세요", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        //완료버튼 클릭 리스너
+        binding.completeTv.setOnClickListener {
+            for (item in stockArrayList) {
+                item.check = true
+            }
+            finish()
+        }
+
         Log.d("EditActivity", "onCreate()")
     }
 
@@ -56,18 +127,31 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
     }
 
     override fun onRestart() {
-        super.onRestart()
+        super.onRestart()/*
         stockArrayList.clear()
-    }
-
-    override fun onResume() {
-        super.onResume()
         //저장된 값 불러와서 초기화
         for (item in SharedPreferenceManager.getObject(this, STOCK_DATA, ArrayList<Stock>())) {
             if (item.check) {
                 stockArrayList.add(item)
             }
-        }
+        }*/
         customEditAdapter.notifyDataSetChanged()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList<Stock>(stockArrayList + defaultList))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        for (item in stockArrayList) {
+            Log.d("EditActivity onStop", item.name+", "+item.check.toString())
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 }

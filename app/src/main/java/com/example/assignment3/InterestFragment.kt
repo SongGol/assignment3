@@ -22,6 +22,8 @@ class InterestFragment : Fragment() {
     var stockArrayList = ArrayList<Stock>()
     private var i: Int = 0
 
+    private val LAYOUT_TYPE = "layout_type"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         customRecyclerAdapter = CustomRecyclerAdapter(stockArrayList)
