@@ -51,16 +51,9 @@ class CustomRecyclerAdapter(var dataSet: ArrayList<Stock>) : RecyclerView.Adapte
         }
 
         fun bind(data: Stock) {
-            binding.recyclerItemName.text = data.name
-            binding.recyclerItemPrice.text = data.currentValue.toString()
-            binding.recyclerItemVolume.text = data.volume.toString()
-            //화살표는 등락에 따라 결정
-            binding.recyclerItemTriangle.text = "▼"
-            binding.recyclerItemDif.text = (data.currentValue - data.startValue).toString()
-            //전날 종가는 시작가와 같다고 하자.
-            binding.recyclerItemDifPer.text = "00.00%"
+            //종목정보
             binding.recyclerItemStatus.setImageResource(if(data.status == 0) 0 else if (data.status == 1) R.drawable.management else R.drawable.warning)
-
+            //종목명
             binding.recyclerItemName.text = data.name
             //색상 설정
             val color = if (data.currentValue <  data.startValue) ContextCompat.getColor(binding.root.context, R.color.medium_blue)  else ContextCompat.getColor(binding.root.context, R.color.dark_red)

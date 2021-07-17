@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment3.databinding.RecyclerviewEditItemBinding
 
@@ -53,14 +54,20 @@ class CustomRecyclerEditAdapter(var dataSet: ArrayList<Stock>, private val liste
         }
         fun bind(data: Stock) {
             binding.name.text = data.name
-            binding.price.text = data.currentValue.toString()
-            binding.volume.text = data.volume.toString()
-            //화살표는 등락에 따라 결정
-            binding.triangle.text = "▼"
-            binding.dif.text = (data.startValue - data.currentValue).toString()
-            //전날 종가는 시작가와 같다고 하자.
-            binding.difPer.text = "00.00%"
-            binding.checkCb.isChecked = !data.check
+            //색상 설정
+            val color = if (data.currentValue <  data.startValue) ContextCompat.getColor(binding.root.context, R.color.medium_blue)  else ContextCompat.getColor(binding.root.context, R.color.dark_red)
+            binding.price.setTextColor(color)
+            binding.dif.setTextColor(color)
+            binding.difPer.setTextColor(color)
+            binding.triangle.setTextColor(color)
+            //삼각형 모양설정
+            binding.triangle.text = if (data.currentValue < data.startValue) "▼" else "▲"
+            //percent 설정
+            binding.difPer.text = makePercent((data.currentValue - data.startValue).toDouble() / data.startValue.toDouble() * 100.0)
+            //숫자 설정
+            binding.dif.text = makeDecimal(data.currentValue - data.startValue)
+            binding.price.text = makeDecimal(data.currentValue)
+            binding.volume.text = makeDecimal(data.volume)
         }
 
     }
