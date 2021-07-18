@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -109,9 +110,11 @@ class InterestFragment : Fragment() {
             }
         })
 
-        sortDialog.setOnSortListner(object : SortDialog.OnSortListener {
+        sortDialog.setOnSortListener(object : SortDialog.OnSortListener {
             override fun onSortSet(type: String) {
-                Toast.makeText(activity, type+" set!", Toast.LENGTH_SHORT).show()
+                sortStocks(stockArrayList)
+                customRecyclerGridAdapter.notifyDataSetChanged()
+                customRecyclerAdapter.notifyDataSetChanged()
             }
         })
         binding.mainSortIv.setOnClickListener {
@@ -139,6 +142,7 @@ class InterestFragment : Fragment() {
                 defaultArrayList.add(item)
             }
         }
+        sortStocks(stockArrayList)
         customRecyclerAdapter.notifyDataSetChanged()
         customRecyclerGridAdapter.notifyDataSetChanged()
 
@@ -190,6 +194,19 @@ class InterestFragment : Fragment() {
         val nextPrice = stock.currentValue + num
         if (stock.startValue.toDouble()*0.7 <= nextPrice && nextPrice <= stock.startValue.toDouble()*1.3) {
             stock.currentValue = nextPrice
+        }
+    }
+
+    private fun sortStocks(stocks: ArrayList<Stock>) {
+        when (SharedPreferenceManager.getStrValue(activity, SortDialog.SORT_KEY, SortDialog.SORT_NOT)) {
+            SortDialog.SORT_PER -> stocks.sortBy { (it.currentValue - it.startValue).toDouble() / it.startValue.toDouble() }
+            SortDialog.SORT_DIF -> stocks.sortBy { it.currentValue - it.startValue }
+            SortDialog.SORT_VOLUME -> stocks.sortBy { it.volume }
+            SortDialog.SORT_PRICE -> stocks.sortBy { it.currentValue }
+            SortDialog.SORT_BUY -> stocks.sortBy { it.currentValue * it.volume }
+            SortDialog.SORT_TRADE -> stocks.sortBy { it.currentValue * it.volume }
+            SortDialog.SORT_NAME -> stocks.sortBy { it.name }
+            else -> stocks
         }
     }
 }

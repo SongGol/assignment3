@@ -131,7 +131,7 @@ class SortDialog : DialogFragment() {
         fun onSortSet(type: String)
     }
 
-    public fun setOnSortListner(listener: OnSortListener) {
+    public fun setOnSortListener(listener: OnSortListener) {
         mListener = listener
     }
 }
