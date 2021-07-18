@@ -108,6 +108,10 @@ class InterestFragment : Fragment() {
             }
         })
 
+        binding.mainSortIv.setOnClickListener {
+            SortDialog().show(requireActivity().supportFragmentManager, "sortDialog")
+        }
+
         return binding.root
     }
 

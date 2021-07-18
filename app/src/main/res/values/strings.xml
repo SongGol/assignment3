@@ -31,4 +31,16 @@
     <string name="delete_tv">삭제</string>
     <string name="group_move_tv">그룹이동</string>
     <string name="complete_tv">완료</string>
+    <string name="sort_standard_tv">정렬 기준</string>
+    <string name="sort_not_tv">정렬안함</string>
+    <string name="sort_per_tv">등락률</string>
+    <string name="sort_dif_tv">등락</string>
+    <string name="sort_volume_tv">거래량</string>
+    <string name="sort_price_tv">가격</string>
+    <string name="sort_benefit_ratio_tv">수익률</string>
+    <string name="sort_benefit_price_tv">수익금</string>
+    <string name="sort_buy_tv">매수금</string>
+    <string name="sort_trade_tv">거래대금</string>
+    <string name="sort_name_tv">가나다순</string>
+    <string name="closing">닫기</string>
 </resources>
