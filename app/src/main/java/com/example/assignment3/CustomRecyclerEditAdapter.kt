@@ -54,6 +54,7 @@ class CustomRecyclerEditAdapter(var dataSet: ArrayList<Stock>, private val liste
         }
         fun bind(data: Stock) {
             binding.name.text = data.name
+            binding.checkCb.isChecked = !data.check
             //색상 설정
             val color = if (data.currentValue <  data.startValue) ContextCompat.getColor(binding.root.context, R.color.medium_blue)  else ContextCompat.getColor(binding.root.context, R.color.dark_red)
             binding.price.setTextColor(color)

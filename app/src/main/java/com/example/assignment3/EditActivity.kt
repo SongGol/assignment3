@@ -39,6 +39,7 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
         }
         //intent받기
         val pos = intent.getIntExtra("position", -1)
+        Log.d("EditActivity pos", pos.toString())
         if (pos != -1) {
             stockArrayList[pos].check = false
         }
@@ -160,12 +161,8 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
                 names.add(item)
             }
         }
+
         SharedPreferenceManager.putObject(this, NAMES, names)
-
-        for (item in ArrayList<Stock>(stockArrayList + defaultList)) {
-            Log.d("EditActivity onPause()", item.name+", "+item.check.toString())
-        }
-
         SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList<Stock>(stockArrayList + defaultList))
     }
 

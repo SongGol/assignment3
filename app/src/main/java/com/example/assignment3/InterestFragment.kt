@@ -88,6 +88,7 @@ class InterestFragment : Fragment() {
                 startActivity(intent)
             }
         })
+
         customRecyclerGridAdapter.setOnItemLongClickListener(object: CustomRecyclerGridAdapter.OnItemLongClickListener {
             override fun onItemLongClick(view: View, position: Int) {
                 Log.d("InterestFragment item long click", position.toString())
