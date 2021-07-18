@@ -101,6 +101,7 @@ class InterestFragment : Fragment() {
         super.onResume()
 
         stockArrayList.clear()
+        defaultArrayList.clear()
         for (item in SharedPreferenceManager.getObject(activity, STOCK_DATA, initialDataSet())) {
             if (item.check) {
                 stockArrayList.add(item)
@@ -108,6 +109,15 @@ class InterestFragment : Fragment() {
                 defaultArrayList.add(item)
             }
         }
+
+        for (item in ArrayList<Stock>(stockArrayList)) {
+            Log.d("InterestFragment onResume() stock", item.name+", "+item.check.toString())
+        }
+
+        for (item in ArrayList<Stock>(defaultArrayList)) {
+            Log.d("InterestFragment onResume() default", item.name+", "+item.check.toString())
+        }
+
         customRecyclerAdapter.notifyDataSetChanged()
         customRecyclerGridAdapter.notifyDataSetChanged()
 
@@ -116,6 +126,15 @@ class InterestFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
+
+        for (item in ArrayList<Stock>(stockArrayList)) {
+            Log.d("InterestFragment onPause() stock", item.name+", "+item.check.toString())
+        }
+
+        for (item in ArrayList<Stock>(defaultArrayList)) {
+            Log.d("InterestFragment onPause() default", item.name+", "+item.check.toString())
+        }
+
         SharedPreferenceManager.putObject(activity, STOCK_DATA, ArrayList<Stock>(stockArrayList + defaultArrayList))
     }
 

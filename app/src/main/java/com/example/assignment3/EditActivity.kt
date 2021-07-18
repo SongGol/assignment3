@@ -169,6 +169,10 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
         }
         SharedPreferenceManager.putObject(this, NAMES, names)
 
+        for (item in ArrayList<Stock>(stockArrayList + defaultList)) {
+            Log.d("EditActivity onPause()", item.name+", "+item.check.toString())
+        }
+
         SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList<Stock>(stockArrayList + defaultList))
     }
 

@@ -35,8 +35,13 @@ class InterestStockActivity : AppCompatActivity() {
 
         //완료 버튼 클릭 리스너
         binding.interestSaveTv.setOnClickListener {
-            //arrayCommit(defaultArrayList, stockArrayList)
-            SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList(defaultArrayList + stockArrayList))
+            arrayCommit(defaultArrayList, stockArrayList)
+
+            for (item in ArrayList<Stock>(defaultArrayList)) {
+                Log.d("InterestStockActivity complete btn clicked", item.name+", "+item.check.toString())
+            }
+
+            SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList(defaultArrayList))
             finish()
         }
 
@@ -93,12 +98,10 @@ class InterestStockActivity : AppCompatActivity() {
         default.add(Stock("삼표시멘트", "A038500","코스닥", "korea", false, 5790, 5790, 5710, 5820, 0))
 
         for (item in SharedPreferenceManager.getObject(this, STOCK_DATA, default)) {
-            //defaultArrayList.add(item)
+            defaultArrayList.add(item)
                 Log.d("InterestStockActivity", item.name)
             if (!item.check) {
                 stockArrayList.add(item)
-            } else {
-                defaultArrayList.add(item)
             }
         }
     }
