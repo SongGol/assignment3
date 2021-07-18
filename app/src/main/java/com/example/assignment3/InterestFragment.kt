@@ -79,7 +79,16 @@ class InterestFragment : Fragment() {
             startActivity(intent)
         }
 
+        //recyclerview item onclick listener
         customRecyclerAdapter.setOnItemLongClickListener(object: CustomRecyclerAdapter.OnItemLongClickListener {
+            override fun onItemLongClick(view: View, position: Int) {
+                Log.d("InterestFragment item long click", position.toString())
+                val intent = Intent(activity, EditActivity::class.java)
+                intent.putExtra("position", position)
+                startActivity(intent)
+            }
+        })
+        customRecyclerGridAdapter.setOnItemLongClickListener(object: CustomRecyclerGridAdapter.OnItemLongClickListener {
             override fun onItemLongClick(view: View, position: Int) {
                 Log.d("InterestFragment item long click", position.toString())
                 val intent = Intent(activity, EditActivity::class.java)
@@ -134,7 +143,7 @@ class InterestFragment : Fragment() {
 
     private fun startTimer() {
         val random = Random()
-        mTimerTask = fixedRateTimer(period = 1000) {
+        mTimerTask = timer(period = 1000) {
             activity?.runOnUiThread {
                 for (item in stockArrayList) {
                     val vol = random.nextInt(1000)
