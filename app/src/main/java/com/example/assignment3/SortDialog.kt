@@ -1,15 +1,19 @@
 package com.example.assignment3
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.example.assignment3.databinding.DialogSortBinding
+import java.lang.ClassCastException
 
 class SortDialog : DialogFragment() {
     private lateinit var binding: DialogSortBinding
+    private var mListener: OnSortListener? = null
 
     companion object {
         const val SORT_KEY = "sort_key"
@@ -61,6 +65,7 @@ class SortDialog : DialogFragment() {
         binding.sortNotTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_NOT)
             this.dismiss()
+            mListener?.onSortSet(SORT_NOT)
         }
 
         binding.sortPerTv.setOnClickListener {
@@ -111,5 +116,13 @@ class SortDialog : DialogFragment() {
         binding.sortCloseTv.setOnClickListener {
             this.dismiss()
         }
+    }
+
+    interface OnSortListener {
+        fun onSortSet(type: String)
+    }
+
+    public fun setOnSortListner(listener: OnSortListener) {
+        mListener = listener
     }
 }

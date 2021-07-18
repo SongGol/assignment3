@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,12 +15,12 @@ import com.example.assignment3.databinding.FragmentInterestBinding
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.fixedRateTimer
-import kotlin.concurrent.timer
 
 class InterestFragment : Fragment() {
     private lateinit var binding: FragmentInterestBinding
     private lateinit var customRecyclerAdapter: CustomRecyclerAdapter
     private lateinit var customRecyclerGridAdapter: CustomRecyclerGridAdapter
+    private var sortDialog = SortDialog()
     var stockArrayList = ArrayList<Stock>()
     var defaultArrayList = ArrayList<Stock>()
     private var i: Int = 0
@@ -108,8 +109,13 @@ class InterestFragment : Fragment() {
             }
         })
 
+        sortDialog.setOnSortListner(object : SortDialog.OnSortListener {
+            override fun onSortSet(type: String) {
+                Toast.makeText(activity, type+" set!", Toast.LENGTH_SHORT).show()
+            }
+        })
         binding.mainSortIv.setOnClickListener {
-            SortDialog().show(requireActivity().supportFragmentManager, "sortDialog")
+            sortDialog.show(requireActivity().supportFragmentManager, "sortDialog")
         }
 
         return binding.root
