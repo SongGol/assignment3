@@ -109,15 +109,6 @@ class InterestFragment : Fragment() {
                 defaultArrayList.add(item)
             }
         }
-
-        for (item in ArrayList<Stock>(stockArrayList)) {
-            Log.d("InterestFragment onResume() stock", item.name+", "+item.check.toString())
-        }
-
-        for (item in ArrayList<Stock>(defaultArrayList)) {
-            Log.d("InterestFragment onResume() default", item.name+", "+item.check.toString())
-        }
-
         customRecyclerAdapter.notifyDataSetChanged()
         customRecyclerGridAdapter.notifyDataSetChanged()
 
@@ -126,15 +117,7 @@ class InterestFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-
-        for (item in ArrayList<Stock>(stockArrayList)) {
-            Log.d("InterestFragment onPause() stock", item.name+", "+item.check.toString())
-        }
-
-        for (item in ArrayList<Stock>(defaultArrayList)) {
-            Log.d("InterestFragment onPause() default", item.name+", "+item.check.toString())
-        }
-
+        Log.d("InterestFragment", "onPause()")
         SharedPreferenceManager.putObject(activity, STOCK_DATA, ArrayList<Stock>(stockArrayList + defaultArrayList))
     }
 
@@ -153,7 +136,6 @@ class InterestFragment : Fragment() {
         val random = Random()
         mTimerTask = fixedRateTimer(period = 1000) {
             activity?.runOnUiThread {
-                Log.d("InterestFragment", "timer!")
                 for (item in stockArrayList) {
                     val vol = random.nextInt(1000)
                     val num = (random.nextInt(11) - 5) * 50

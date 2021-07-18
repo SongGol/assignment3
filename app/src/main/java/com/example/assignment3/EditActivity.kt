@@ -128,14 +128,7 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
     }
 
     override fun onRestart() {
-        super.onRestart()/*
-        stockArrayList.clear()
-        //저장된 값 불러와서 초기화
-        for (item in SharedPreferenceManager.getObject(this, STOCK_DATA, ArrayList<Stock>())) {
-            if (item.check) {
-                stockArrayList.add(item)
-            }
-        }*/
+        super.onRestart()
 
         var index = 0
         val names = SharedPreferenceManager.getObject(this, NAMES, ArrayList<Stock>())
@@ -181,8 +174,6 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
         for (item in stockArrayList) {
             Log.d("EditActivity onStop", item.name+", "+item.check.toString())
         }
-
-
     }
 
     override fun onResume() {

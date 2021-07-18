@@ -23,7 +23,6 @@ class InterestStockActivity : AppCompatActivity() {
 
         Log.d("InterestStockActivity", "onCreate()")
         initializeDataSet()
-        Log.d("InterestStockActivity", "onCreate()")
         customAdapter = CustomListAdapter(this, stockArrayList)
         binding.interestLv.adapter = customAdapter
 
@@ -36,11 +35,6 @@ class InterestStockActivity : AppCompatActivity() {
         //완료 버튼 클릭 리스너
         binding.interestSaveTv.setOnClickListener {
             arrayCommit(defaultArrayList, stockArrayList)
-
-            for (item in ArrayList<Stock>(defaultArrayList)) {
-                Log.d("InterestStockActivity complete btn clicked", item.name+", "+item.check.toString())
-            }
-
             SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList(defaultArrayList))
             finish()
         }
