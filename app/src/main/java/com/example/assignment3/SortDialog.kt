@@ -71,46 +71,55 @@ class SortDialog : DialogFragment() {
         binding.sortPerTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_PER)
             this.dismiss()
+            mListener?.onSortSet(SORT_PER)
         }
 
         binding.sortDifTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_DIF)
             this.dismiss()
+            mListener?.onSortSet(SORT_DIF)
         }
 
         binding.sortVolumeTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_VOLUME)
             this.dismiss()
+            mListener?.onSortSet(SORT_VOLUME)
         }
 
         binding.sortPriceTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_PRICE)
             this.dismiss()
+            mListener?.onSortSet(SORT_PRICE)
         }
 
         binding.sortBenefitRatioTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_BENEFIT_RATIO)
             this.dismiss()
+            mListener?.onSortSet(SORT_BENEFIT_RATIO)
         }
 
         binding.sortBenefitPriceTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_BENEFIT_PRICE)
             this.dismiss()
+            mListener?.onSortSet(SORT_BENEFIT_PRICE)
         }
 
         binding.sortBuyTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_BUY)
             this.dismiss()
+            mListener?.onSortSet(SORT_BUY)
         }
 
         binding.sortTradeTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_TRADE)
             this.dismiss()
+            mListener?.onSortSet(SORT_TRADE)
         }
 
         binding.sortNameTv.setOnClickListener {
             SharedPreferenceManager.putStrValue(activity, SORT_KEY, SORT_NAME)
             this.dismiss()
+            mListener?.onSortSet(SORT_NAME)
         }
 
         binding.sortCloseTv.setOnClickListener {
