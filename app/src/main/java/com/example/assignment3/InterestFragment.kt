@@ -39,26 +39,36 @@ class InterestFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentInterestBinding.inflate(inflater, container, false)
 
-        //layout manager설정
-        binding.mainRecyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        binding.mainRecyclerview.adapter = customRecyclerAdapter
-        binding.mainRecyclerview.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-
+        //layout값 가져오기
+        var layout = SharedPreferenceManager.getStrValue(activity, LAYOUT_TYPE, "linear")
+        if (layout == "linear") {
+            //layout manager설정
+            binding.mainRecyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            binding.mainRecyclerview.adapter = customRecyclerAdapter
+            binding.mainRecyclerview.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        } else {
+            binding.mainGridIv.setImageResource(R.drawable.linear)
+            //grid manager설정
+            binding.mainRecyclerview.layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+            binding.mainRecyclerview.adapter = customRecyclerGridAdapter
+        }
 
         //종목 표시창 변경 리스너
         binding.mainGridIv.setOnClickListener {
-            if (i == 0) {
+            if (layout == "linear") {
                 binding.mainGridIv.setImageResource(R.drawable.linear)
                 //grid manager설정
                 binding.mainRecyclerview.layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                 binding.mainRecyclerview.adapter = customRecyclerGridAdapter
-                i = 1
+                layout = "grid"
+                SharedPreferenceManager.putStrValue(activity, LAYOUT_TYPE, "grid")
             } else {
                 binding.mainGridIv.setImageResource(R.drawable.grid)
                 //layout manager설정
                 binding.mainRecyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                 binding.mainRecyclerview.adapter = customRecyclerAdapter
-                i = 0
+                layout = "linear"
+                SharedPreferenceManager.putStrValue(activity, LAYOUT_TYPE, "linear")
             }
         }
 
