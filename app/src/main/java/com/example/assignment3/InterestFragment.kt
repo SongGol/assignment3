@@ -144,7 +144,8 @@ class InterestFragment : Fragment() {
 
     private fun startTimer() {
         val random = Random()
-        mTimerTask = timer(period = 1000) {
+        mTimerTask = fixedRateTimer(period = 2500) {
+            Log.d("InterestFragment", "timer ")
             activity?.runOnUiThread {
                 for (item in stockArrayList) {
                     val vol = random.nextInt(1000)
