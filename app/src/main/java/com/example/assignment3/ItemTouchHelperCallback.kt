@@ -25,5 +25,5 @@ class ItemTouchHelperCallback(val listener: ItemActionListener) : ItemTouchHelpe
 
     }
 
-    override fun isLongPressDragEnabled(): Boolean = false
+    override fun isLongPressDragEnabled(): Boolean = true
 }

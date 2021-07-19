@@ -118,6 +118,7 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
             for (item in stockArrayList) {
                 item.check = true
             }
+            SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList<Stock>(stockArrayList + defaultList))
             finish()
         }
 
@@ -163,7 +164,6 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
         }
 
         SharedPreferenceManager.putObject(this, NAMES, names)
-        SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList<Stock>(stockArrayList + defaultList))
     }
 
     override fun onStop() {
