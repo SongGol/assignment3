@@ -119,6 +119,7 @@ class InterestFragment : Fragment() {
         })
         binding.mainSortIv.setOnClickListener {
             sortDialog.show(requireActivity().supportFragmentManager, "sortDialog")
+            sortStocks(stockArrayList)
         }
 
         return binding.root
@@ -142,7 +143,7 @@ class InterestFragment : Fragment() {
                 defaultArrayList.add(item)
             }
         }
-        sortStocks(stockArrayList)
+
         customRecyclerAdapter.notifyDataSetChanged()
         customRecyclerGridAdapter.notifyDataSetChanged()
 
@@ -199,12 +200,12 @@ class InterestFragment : Fragment() {
 
     private fun sortStocks(stocks: ArrayList<Stock>) {
         when (SharedPreferenceManager.getStrValue(activity, SortDialog.SORT_KEY, SortDialog.SORT_NOT)) {
-            SortDialog.SORT_PER -> stocks.sortBy { (it.currentValue - it.startValue).toDouble() / it.startValue.toDouble() }
-            SortDialog.SORT_DIF -> stocks.sortBy { it.currentValue - it.startValue }
-            SortDialog.SORT_VOLUME -> stocks.sortBy { it.volume }
-            SortDialog.SORT_PRICE -> stocks.sortBy { it.currentValue }
-            SortDialog.SORT_BUY -> stocks.sortBy { it.currentValue * it.volume }
-            SortDialog.SORT_TRADE -> stocks.sortBy { it.currentValue * it.volume }
+            SortDialog.SORT_PER -> stocks.sortByDescending { (it.currentValue - it.startValue).toDouble() / it.startValue.toDouble() }
+            SortDialog.SORT_DIF -> stocks.sortByDescending { it.currentValue - it.startValue }
+            SortDialog.SORT_VOLUME -> stocks.sortByDescending { it.volume }
+            SortDialog.SORT_PRICE -> stocks.sortByDescending { it.currentValue }
+            SortDialog.SORT_BUY -> stocks.sortByDescending { it.currentValue * it.volume }
+            SortDialog.SORT_TRADE -> stocks.sortByDescending { it.currentValue * it.volume }
             SortDialog.SORT_NAME -> stocks.sortBy { it.name }
             else -> stocks
         }
