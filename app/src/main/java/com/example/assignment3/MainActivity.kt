@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -37,10 +38,11 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
 
-        //onclick listener설정
+        //onclick listener 설정
         //관심종목
         binding.mainInterestFrgIv.setOnClickListener {
             supportFragmentManager.popBackStack(CUR, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            setImage(CUR, INTEREST)
             CUR = INTEREST
 
             supportFragmentManager.beginTransaction().apply {
@@ -53,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         //더보기
         binding.mainMoreIv.setOnClickListener {
             supportFragmentManager.popBackStack(CUR, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            setImage(CUR, MORE)
             CUR = MORE
 
             supportFragmentManager.beginTransaction().apply {
@@ -73,6 +76,30 @@ class MainActivity : AppCompatActivity() {
             finish()
             System.exit(0)
             android.os.Process.killProcess(android.os.Process.myPid())
+        }
+    }
+
+    private fun setImage(cur: String, next: String) {
+        when (cur) {
+            INTEREST -> {
+                binding.mainInterestFrgIv.setImageResource(R.drawable.interest_unselected)
+                binding.mainInterestFrgTv.setTextColor(ContextCompat.getColor(binding.root.context, R.color.black))
+            }
+            MORE -> {
+                binding.mainMoreIv.setImageResource(R.drawable.more_unselected)
+                binding.mainMoreTv.setTextColor(ContextCompat.getColor(binding.root.context, R.color.black))
+            }
+        }
+
+        when (next) {
+            INTEREST -> {
+                binding.mainInterestFrgIv.setImageResource(R.drawable.interest_selected)
+                binding.mainInterestFrgTv.setTextColor(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+            }
+            MORE -> {
+                binding.mainMoreIv.setImageResource(R.drawable.more_selected)
+                binding.mainMoreTv.setTextColor(ContextCompat.getColor(binding.root.context, R.color.dark_red))
+            }
         }
     }
 }
