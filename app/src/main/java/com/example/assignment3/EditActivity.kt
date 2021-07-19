@@ -107,6 +107,7 @@ class EditActivity : AppCompatActivity(), ItemDragListener {
                 }
                 defaultList = ArrayList(defaultList + removeItems)
                 stockArrayList.removeAll(removeItems)
+                SharedPreferenceManager.putObject(this, STOCK_DATA, ArrayList<Stock>(stockArrayList + defaultList))
                 finish()
             } else {
                 Toast.makeText(this, "삭제할 관심종목을 선택해 주세요", Toast.LENGTH_SHORT).show()
